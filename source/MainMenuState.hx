@@ -36,10 +36,12 @@ class MainMenuState extends MusicBeatState
 		'story_mode',
 		'freeplay',
 		#if MODS_ALLOWED 'mods', #end
-		#if ACHIEVEMENTS_ALLOWED 'awards', #end
 		'credits',
-		#if !switch 'donate', #end
 		'options'
+                 'stare',
+                 'face-him',
+                  'Carol',        
+                 #if ACHIEVEMENTS_ALLOWED 'awards', #end
 	];
 
 	var magenta:FlxSprite;
@@ -114,6 +116,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 			menuItem.animation.play('idle');
+                        menuItem.scale.set(0.8, 0.8);
 			menuItem.ID = i;
 			menuItem.screenCenter(X);
 			menuItems.add(menuItem);
@@ -124,10 +127,10 @@ class MainMenuState extends MusicBeatState
 			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
 			menuItem.updateHitbox();
 		}
-
 		FlxG.camera.follow(camFollowPos, null, 1);
 
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
+
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "fata fan made Engine v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -235,6 +238,7 @@ class MainMenuState extends MusicBeatState
 
 								switch (daChoice)
 								{
+                                                                        
 									case 'story_mode':
 										MusicBeatState.switchState(new StoryMenuState());
 									case 'freeplay':
@@ -243,6 +247,15 @@ class MainMenuState extends MusicBeatState
 									case 'mods':
 										MusicBeatState.switchState(new ModsMenuState());
 									#end
+                                                                        case 'stare'
+                                                                        PlayState.SONG = Song.loadFromJson('stare-stare', 'stare');
+                                       LoadingState.loadAndSwitchState(new PlayState());
+                                                                         case 'face-him'
+                                                                        PlayState.SONG = Song.loadFromJson('face-him-hard', 'face-him');
+                                       LoadingState.loadAndSwitchState(new PlayState());
+                                                                        case 'carol'
+                                                                        PlayState.SONG = Song.loadFromJson('carol-hard', 'carol');
+                                       LoadingState.loadAndSwitchState(new PlayState());
 									case 'awards':
 										MusicBeatState.switchState(new AchievementsMenuState());
 									case 'credits':
@@ -267,6 +280,7 @@ class MainMenuState extends MusicBeatState
 		menuItems.forEach(function(spr:FlxSprite)
 		{
 			spr.screenCenter(X);
+                        spr.x += -300; 
 		});
 	}
 
