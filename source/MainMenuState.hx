@@ -41,7 +41,7 @@ class MainMenuState extends MusicBeatState
                  'stare',
                  'face-him',
                   'Carol',        
-                 #if ACHIEVEMENTS_ALLOWED 'awards', #end
+                 #if ACHIEVEMENTS_ALLOWED 'awards' #end
 	];
 
 	var magenta:FlxSprite;
