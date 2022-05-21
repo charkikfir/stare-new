@@ -579,26 +579,42 @@ class TitleState extends MusicBeatState
 			{
 				case 1:
 					#if PSYCH_WATERMARKS
-					createCoolText(['fata fan made 2.0 by'], 15);
+					createCoolText(['vs starecrown psych engine by'], 15);
 					#else
-					createCoolText(['kfir charki gaming'
+					createCoolText(['kfir charki gaming', 'jeffrey julse gaming', 'kfir charki gaming', 'Figthedig']);
 					#end
 				// credTextShit.visible = true;
 				case 2:
+					#if PSYCH_WATERMARKS
+					addMoreText('present');
+					#end
+				// credTextShit.text += '\npresent...';
+				// credTextShit.addText();
+				case 3:
 					deleteCoolText();
 				// credTextShit.visible = false;
 				// credTextShit.text = 'In association \nwith';
 				// credTextShit.screenCenter();
-				case 3:
-					addMoreText('fata');
-				// credTextShit.visible = true;
 				case 4:
-					addMoreText('fan made');
-				// credTextShit.text += '\nNight';
-				case 5:
-					addMoreText('2.0'); // credTextShit.text += '\nFunkin';
+					#if PSYCH_WATERMARKS
+					createCoolText(['subscribe to', 'kfir charki gaming'], -40);
+					#else
+					createCoolText(['subscribe to', 'kfir charki gaming'], -40);
+					#end
 
+				case 5:
+					addMoreText('funkin');
+				// credTextShit.visible = true;
 				case 6:
+					addMoreText('against the');
+				// credTextShit.text += '\nNight';
+				case 7:
+					addMoreText('anomalies!'); // credTextShit.text += '\nFunkin';
+                                 case 8:
+					addMoreText('fan made!'); // credTextShit.text += '\nFunkin';
+
+
+				case 9:
 					skipIntro();
 			}
 		}
