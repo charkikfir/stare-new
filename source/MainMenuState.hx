@@ -39,7 +39,7 @@ class MainMenuState extends MusicBeatState
 		'credits',
 		'options'
                  'stare',
-                 'face-him',
+                 'face_him',
                   'Carol',        
                  #if ACHIEVEMENTS_ALLOWED 'awards' #end
 	];
@@ -250,7 +250,7 @@ class MainMenuState extends MusicBeatState
                                                                         case 'stare'
                                                                         PlayState.SONG = Song.loadFromJson('stare-stare', 'stare');
                                        LoadingState.loadAndSwitchState(new PlayState());
-                                                                         case 'face-him'
+                                                                         case 'face_him'
                                                                         PlayState.SONG = Song.loadFromJson('face-him-hard', 'face-him');
                                        LoadingState.loadAndSwitchState(new PlayState());
                                                                         case 'carol'
