@@ -37,11 +37,11 @@ class MainMenuState extends MusicBeatState
 		'freeplay',
 		#if MODS_ALLOWED 'mods', #end
 		'credits',
-		'options'
                  'stare',
-                 'face_him',
-                  'Carol',        
-                 #if ACHIEVEMENTS_ALLOWED 'awards' #end
+                 'face-him',
+                 'carol',
+		'options',
+                #if ACHIEVEMENTS_ALLOWED 'awards', #end
 	];
 
 	var magenta:FlxSprite;
@@ -116,7 +116,6 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 			menuItem.animation.play('idle');
-                        menuItem.scale.set(0.8, 0.8);
 			menuItem.ID = i;
 			menuItem.screenCenter(X);
 			menuItems.add(menuItem);
@@ -127,10 +126,10 @@ class MainMenuState extends MusicBeatState
 			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
 			menuItem.updateHitbox();
 		}
+
 		FlxG.camera.follow(camFollowPos, null, 1);
 
-
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "fata fan made Engine v" + psychEngineVersion, 12);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "FATA fan made engine" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -209,7 +208,8 @@ class MainMenuState extends MusicBeatState
 			{
 				if (optionShit[curSelected] == 'donate')
 				{
-					CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
+					CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin
+');
 				}
 				else
 				{
@@ -238,24 +238,23 @@ class MainMenuState extends MusicBeatState
 
 								switch (daChoice)
 								{
-                                                                        
 									case 'story_mode':
 										MusicBeatState.switchState(new StoryMenuState());
+                                                                        case 'stare':
+                                                                        PlayState.SONG = Song.loadFromJson('stare-stare', 'stare');
+                                                                         LoadingState.loadAndSwitchState(new PlayState());
+                                                                         case 'face-him'
+                                                                        PlayState.SONG = Song.loadFromJson('face-him-hard', 'face-him');
+                                       LoadingState.loadAndSwitchState(new PlayState());
+                                                                       case 'carol'
+                                                                        PlayState.SONG = Song.loadFromJson('carol-hard', 'carol');
+                                       LoadingState.loadAndSwitchState(new PlayState());
 									case 'freeplay':
 										MusicBeatState.switchState(new FreeplayState());
 									#if MODS_ALLOWED
 									case 'mods':
 										MusicBeatState.switchState(new ModsMenuState());
 									#end
-                                                                        case 'stare'
-                                                                        PlayState.SONG = Song.loadFromJson('stare-stare', 'stare');
-                                       LoadingState.loadAndSwitchState(new PlayState());
-                                                                         case 'face_him'
-                                                                        PlayState.SONG = Song.loadFromJson('face-him-hard', 'face-him');
-                                       LoadingState.loadAndSwitchState(new PlayState());
-                                                                        case 'carol'
-                                                                        PlayState.SONG = Song.loadFromJson('carol-hard', 'carol');
-                                       LoadingState.loadAndSwitchState(new PlayState());
 									case 'awards':
 										MusicBeatState.switchState(new AchievementsMenuState());
 									case 'credits':
